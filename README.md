@@ -2,16 +2,16 @@
 
 **AWS CLI Ver-2 Installation (For Ubuntu):** 
 
-- curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+- ```user@ubuntu:~$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"```
 
-- unzip awscliv2.zip
+- ```user@ubuntu:~$ unzip awscliv2.zip```
 
-- sudo ./aws/install
+- ```user@ubuntu:~$sudo ./aws/install```
 
 **Terraform Installation (For Ubuntu):**
 
 - ```user@ubuntu:~$ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl```
 
-- curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+- ```user@ubuntu:~$ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -```
 
-- sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+- ```user@ubuntu:~$ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"```
