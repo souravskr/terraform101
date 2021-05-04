@@ -10,7 +10,7 @@
 
 **Terraform Installation (For Ubuntu):**
 
-- sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+- '''user@ubuntu:~$ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl'''
 
 - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 
