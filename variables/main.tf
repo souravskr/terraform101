@@ -1,3 +1,9 @@
+# declare the cloud provider
+provider "aws" {
+  region = "ca-central-1"
+}
+
+
 # Variable for string
 variable "vpcname" {
   type = "string"
@@ -27,5 +33,13 @@ variable "mymap" {
   default = {
       key1 = "value1"
       key2 = "value2"
+  }
+}
+
+# Todo: use the vpcname to name a vpc while creation
+resource "aws_vpc" "mypvc" {
+  cidr_block = "10.0.0.0/16" 
+  tags = {
+    name = var.vpcname
   }
 }
