@@ -6,7 +6,7 @@
 
 - ```user@ubuntu:~$ unzip awscliv2.zip```
 
-- ```user@ubuntu:~$sudo ./aws/install```
+- ```user@ubuntu:~$ sudo ./aws/install```
 
 **Terraform Installation (For Ubuntu):**
 
