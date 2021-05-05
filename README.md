@@ -15,3 +15,9 @@
 - ```user@ubuntu:~$ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -```
 
 - ```user@ubuntu:~$ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"```
+
+**Basic Terraform Commands:**
+
+- ```terraform init```
+- ```terraform plan```
+- ```terraform apply```
