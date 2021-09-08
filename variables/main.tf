@@ -6,7 +6,7 @@
 # My TEST-asdda
 # Todo: declare the cloud provider
 provider "aws" {
-  region = "ca-central-1"
+ba-central-1
 }
 
 
