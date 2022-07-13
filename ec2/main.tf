@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "ec2instance" {
-  ami           = var.ec2AMIs[var.awsRegion]
+  ami           = lookup(var.ec2AMIs, var.awsRegion)
   instance_type = var.instanceType
   tags = {
     Name = var.instanceName

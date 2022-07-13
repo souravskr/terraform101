@@ -6,17 +6,13 @@ variable "awsRegion" {
 variable "instanceName" {
   type        = string
   description = "Please write the instance name"
-}
-
-variable "ami" {
-  type        = string
-  description = "Fill the ami for your instance"
+  default = "myExampleEc2Instance"
 }
 
 variable "instanceType" {
   type        = string
   description = "Write the instance type"
-  default = "t2-micro"
+  default = "t2.micro"
 }
 
 variable "ec2AMIs" {
