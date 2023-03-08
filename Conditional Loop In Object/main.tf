@@ -1,5 +1,5 @@
 locals {
-  foobars = {
+  alphabets = {
     "first" : {
       firstAlphabets : [
         "a",
@@ -19,7 +19,7 @@ locals {
 
 output "only_alphabets" {
   value = flatten([
-    for k, v in local.foobars:
+    for k, v in local.alphabets:
           [for i, j in v: j]
   ])
 }
