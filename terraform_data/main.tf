@@ -12,7 +12,7 @@ locals {
     }
     "webserver": {
       ami_id = "ami-aWp6QRchles"
-      server_name = "webserver"
+      server_name = "Webserver"
     }
   }
 }
@@ -41,6 +41,29 @@ data "local_file" "server_information" {
   depends_on = [local_file.server_information]
 }
 
+data "cloudinit_config" "config" {
+  gzip          = false
+  base64_encode = false
+
+  dynamic "part" {
+    for_each = data.local_file.server_information
+
+    content {
+      filename = part.value.filename
+      content = part.value.content
+    }
+  }
+}
+
+locals {
+  content_info = [for k, v in data.cloudinit_config.config: v][4]
+}
+
 output "file_contents" {
   value = {for file in data.local_file.server_information: file.filename => file.content}
+}
+
+output "content_types" {
+  value = {for k, v in local.content_info: v.filename => v.content_type
+  }
 }
