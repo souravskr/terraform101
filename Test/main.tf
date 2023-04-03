@@ -1,51 +1,31 @@
-locals {
-  target_groups = {
-    target1 = {
-      name = "example1"
-      trigger = {
-        cluster_instance_ids = [for rand_string in random_string.random_strings : rand_string.id][0]
-      }
-      connection = {
-        host = [for pet_name in random_pet.pet_names : pet_name.id][0]
-      }
+terraform {
+  required_providers {
+    databricks = {
+      source = "databricks/databricks"
     }
-    target2 = {
-      name = "example2"
-      trigger = {
-        cluster_instance_ids = [for rand_string in random_string.random_strings : rand_string.id][1]
-      }
-      connection = {
-        host = [for pet_name in random_pet.pet_names : pet_name.id][1]
-      }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.15.0"
     }
   }
 }
 
-resource "random_string" "random_strings" {
-  count  = 2
-  length = 10
+variable "region" {
+  default = ""
+}
+provider "aws" {
+  region = var.region
 }
 
-resource "random_pet" "pet_names" {
-  count  = 2
-  length = 10
+// initialize provider in "MWS" mode to provision new workspace
+variable "databricks_account_username" {
+  default = ""
 }
-
-resource "null_resource" "demo_resource" {
-  for_each = local.target_groups
-
-  triggers = each.value.trigger
-  connection {
-    host = each.value.connection.host
-  }
+variable "databricks_account_password" {
+  default = ""
 }
-
-locals {
-  null_resource_triggers = [for k, v in null_resource.demo_resource : v.triggers
-    if k == "target1"
-  ]
-}
-
-output "null_resource_triggers" {
-  value = local.null_resource_triggers
+provider "databricks" {
+  host     = "https://accounts.cloud.databricks.com"
+  username = var.databricks_account_username
+  password = var.databricks_account_password
 }
