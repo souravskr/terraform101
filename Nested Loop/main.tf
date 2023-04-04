@@ -11,8 +11,13 @@ locals {
       }
     ]
   ]
+  ecs_secret_key = keys(local.key_arn_names)
 }
 
 output "secrets" {
-        value = local.ecs_secrets[0]
+        value = local.ecs_secrets
+}
+
+output "ecs_secret_key" {
+  value = local.ecs_secret_key
 }
