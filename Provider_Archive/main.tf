@@ -48,3 +48,7 @@ output "zip" {
   ])
 }
 
+output "hello" {
+  value = ""
+}
+

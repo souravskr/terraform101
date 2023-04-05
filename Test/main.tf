@@ -1,31 +1,22 @@
-terraform {
-  required_providers {
-    databricks = {
-      source = "databricks/databricks"
-    }
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.15.0"
-    }
+resource "random_pet" "pet" {
+  keepers = {
+    time = timestamp()
+  }
+  length = 10
+  separator = "-"
+}
+
+resource "terraform_data" "main" {
+  triggers_replace = random_pet.pet.id
+  provisioner "local-exec" {
+    command = "echo ${self.triggers_replace}"
   }
 }
 
-variable "region" {
-  default = ""
-}
-provider "aws" {
-  region = var.region
+output "random_pet" {
+  value = random_pet.pet.id
 }
 
-// initialize provider in "MWS" mode to provision new workspace
-variable "databricks_account_username" {
-  default = ""
-}
-variable "databricks_account_password" {
-  default = ""
-}
-provider "databricks" {
-  host     = "https://accounts.cloud.databricks.com"
-  username = var.databricks_account_username
-  password = var.databricks_account_password
+output "terraform_data" {
+  value = terraform_data.main.id
 }
