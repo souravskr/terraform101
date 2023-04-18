@@ -31,13 +31,13 @@ output "total_alphabets" {
 output "vowels" {
   value = [
     for alphabet in local.all_alphabets: alphabet
-          if alphabet == "e" || alphabet == "i"
+          if alphabet == "e" || alphabet == "i" || alphabet == "a"
   ]
 }
 
 output "consonants" {
   value = [
     for alphabet in local.all_alphabets: alphabet
-          if alphabet != "e" && alphabet != "i"
+          if alphabet != "e" && alphabet != "i" && alphabet != "a"
   ]
 }
